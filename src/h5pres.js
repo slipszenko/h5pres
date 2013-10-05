@@ -84,11 +84,11 @@ szko.h5pres = (function () {
         switch (e.keyCode) {
             case (keys.right):
             case (keys.down):
-                setCurrentSlide(current + 1);
+                nextSlide();
                 break;
             case (keys.left):
             case (keys.up):
-                setCurrentSlide(current - 1);
+                prevSlide();
                 break;
             case (keys.fullStop):
                 togglePresentation();
@@ -96,6 +96,9 @@ szko.h5pres = (function () {
         }
         return false;
     },
+
+    nextSlide = function () { setCurrentSlide(current + 1); },
+    prevSlide = function () { setCurrentSlide(current - 1); },
 
 
     init = function () {
@@ -109,7 +112,9 @@ szko.h5pres = (function () {
     return {
         init : init.bind(szko.h5pres),
         stopPresenting: stopPresenting.bind(szko.h5pres),
-        startPresenting: startPresenting.bind(szko.h5pres)
+        startPresenting: startPresenting.bind(szko.h5pres),
+        nextSlide: nextSlide.bind(szko.h5pres),
+        prevSlide: prevSlide.bind(szko.h5pres)
     };
 
 }());
