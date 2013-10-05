@@ -37,7 +37,7 @@ szko.h5pres = (function () {
         setCurrentSlide(current);
         presenting = true;
 
-        // Go fullscreen        
+        // Go fullscreen
         var docElm = document.documentElement;
         if (docElm.requestFullscreen) {
             docElm.requestFullscreen();
@@ -60,7 +60,7 @@ szko.h5pres = (function () {
             hiddenContent[i].classList.remove("szko-h5pres-hide");
         }
 
-        // Exit fullscreen      
+        // Exit fullscreen
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.mozCancelFullScreen) {
