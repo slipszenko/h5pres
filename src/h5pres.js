@@ -19,9 +19,9 @@ szko.h5pres = (function () {
     setCurrentSlide = function (slide) {
         current = slide;
         // Hide everything at the first level (except the article tag), and all slides
-        var everything = document.querySelectorAll("body>*:not(article), article section");
-        for(var i = 0; i < everything.length; i++) {
-            everything[i].classList.add("szko-h5pres-hide");
+        var toHide = document.querySelectorAll("body>*:not(article), article section");
+        for(var i = 0; i < toHide.length; i++) {
+            toHide[i].classList.add("szko-h5pres-hide");
         }
         // Show the slide
         document.querySelector("article section:nth-child(" + current + ")").classList.remove("szko-h5pres-hide");
@@ -49,6 +49,12 @@ szko.h5pres = (function () {
         console.log("Stopping slideshow.")
         // Return to the normal view
         presenting = false;
+
+        // Show all the content as it was before
+        var hiddenContent = document.querySelectorAll(".szko-h5pres-hide");
+        for(var i = 0; i < hiddenContent.length; i++) {
+            hiddenContent[i].classList.remove("szko-h5pres-hide");
+        }
 
         // Exit fullscreen      
         if (document.exitFullscreen) {
