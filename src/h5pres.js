@@ -7,6 +7,7 @@ szko.h5pres = (function () {
     // Private vars
     var presenting = false,
         current = 1,
+        slideLimit = 0,
         keys = {
             left : 37,
             up : 38,
@@ -17,14 +18,17 @@ szko.h5pres = (function () {
 
 
     setCurrentSlide = function (slide) {
-        current = slide;
-        // Hide everything at the first level (except the article tag), and all slides
-        var toHide = document.querySelectorAll("body>*:not(article), article section");
-        for(var i = 0; i < toHide.length; i++) {
-            toHide[i].classList.add("szko-h5pres-hide");
+        // Check the slide is in range
+        if(1 <= slide && slide <= slideLimit) {
+            current = slide;
+            // Hide everything at the first level (except the article tag), and all slides
+            var toHide = document.querySelectorAll("body>*:not(article), article section");
+            for(var i = 0; i < toHide.length; i++) {
+                toHide[i].classList.add("szko-h5pres-hide");
+            }
+            // Show the slide
+            document.querySelector("article section:nth-child(" + current + ")").classList.remove("szko-h5pres-hide");
         }
-        // Show the slide
-        document.querySelector("article section:nth-child(" + current + ")").classList.remove("szko-h5pres-hide");
     },
 
 
@@ -96,6 +100,7 @@ szko.h5pres = (function () {
 
     init = function () {
         console.log("h5pres initiated");
+        slideLimit = document.querySelectorAll("article section").length;
         window.addEventListener('keydown', keypress.bind(szko.h5pres), false);
     };
 
@@ -109,4 +114,5 @@ szko.h5pres = (function () {
 
 }());
 
-szko.h5pres.init();
+// Defer initiation to page load, so we know how many slides there are
+window.addEventListener('load', szko.h5pres.init, false);
