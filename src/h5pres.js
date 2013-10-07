@@ -113,7 +113,7 @@ szko.h5pres = (function () {
         init : init.bind(szko.h5pres),
         stopPresenting: stopPresenting.bind(szko.h5pres),
         startPresenting: startPresenting.bind(szko.h5pres),
-        togglePresentation: togglePresentation.bind(szeko.h5pres),
+        togglePresentation: togglePresentation.bind(szko.h5pres),
         nextSlide: nextSlide.bind(szko.h5pres),
         prevSlide: prevSlide.bind(szko.h5pres)
     };
